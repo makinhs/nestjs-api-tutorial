@@ -27,6 +27,7 @@
     "@nestjs/mapped-types": "^0.2.0",
     "@nestjs/platform-express": "^7.5.1",
     "@nestjs/typeorm": "^7.1.5",
+    "bcrypt": "^5.0.0",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
     "pg": "^8.5.1",

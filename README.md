@@ -1,5 +1,7 @@
 ## NestJS Api Tutorial
 
+[![DeepScan grade](https://deepscan.io/api/teams/14055/projects/17155/branches/385052/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=14055&pid=17155&bid=385052)
+
 This is the source code of my Medium article series teaching you how to create a REST API with the powerful NestJS framework.
 
 [Part 01](https://makinhs.medium.com/creating-a-rest-api-series-with-nestjs-part-01-scaffolding-and-basic-cli-usage-30ace19c5bb8): Creating a REST API with NestJS — Part 01 — Scaffolding and basic CLI usage

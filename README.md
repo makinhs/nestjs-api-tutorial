@@ -1,6 +1,6 @@
 ## NestJS Api Tutorial
 
-[![DeepScan grade](https://deepscan.io/api/teams/14055/projects/17155/branches/385052/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=14055&pid=17155&bid=385052)
+[![DeepScan grade](https://deepscan.io/api/teams/14055/projects/17155/branches/385052/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=14055&pid=17155&bid=385052) [![Maintainability](https://api.codeclimate.com/v1/badges/2871443c2f5bb3af867e/maintainability)](https://codeclimate.com/github/makinhs/nestjs-api-tutorial/maintainability)
 
 This is the source code of my Medium article series teaching you how to create a REST API with the powerful NestJS framework.
 

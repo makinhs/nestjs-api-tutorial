@@ -1,5 +1,10 @@
 version: 2.1
-
+executors:
+  docker-publisher:
+    environment:
+      IMAGE_NAME: makinhs/nestjs-api
+    docker:
+      - image: makinhs/nestjs-api
 orbs:
   node: circleci/node@4.1
 
@@ -12,21 +17,29 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run:
           name: docker_build
           command: |
             time DOCKER_BUILDKIT=1 docker build -t makinhs/nestjs-api .
+      - run:
+          name: Archive Docker image
+          command: docker save -o image.tar makinhs/nestjs-api
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./image.tar
   deploy_image:
+    executor: docker-publisher
     docker:
       - image: cimg/node:16.1.0
     steps:
-      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
       - setup_remote_docker:
           version: 19.03.13
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - run:
+          name: Load archived Docker image
+          command: docker load -i /tmp/workspace/image.tar
       - run:
           name: login_docker
           command: |

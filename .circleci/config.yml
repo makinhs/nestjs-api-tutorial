@@ -25,7 +25,7 @@ jobs:
       # Next, the node orb's install-packages step will install the dependencies from a package.json.
       # The orb install-packages step will also automatically cache them for faster future runs.
       - setup_remote_docker:
-          version: 20.10.5
+          version: 19.03.13
       - run:
           name: docker_build
           command: |

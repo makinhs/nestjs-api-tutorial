@@ -5,7 +5,7 @@ orbs:
 
 
 jobs:
-  build_and_push:
+  build_image:
     docker:
       - image: cimg/node:16.1.0
     steps:
@@ -16,6 +16,13 @@ jobs:
           name: docker_build
           command: |
             time DOCKER_BUILDKIT=1 docker build -t makinhs/nestjs-api .
+  deploy_image:
+    docker:
+      - image: cimg/node:16.1.0
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
       - run:
           name: login_docker
           command: |
@@ -33,4 +40,13 @@ workflows:
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   build_n_deploy:
     jobs:
-      - build_and_push
+      - build_image:
+          filters:
+            branches:
+              only: main
+      - deploy_image:
+          requires:
+            - build_image
+          filters:
+            branches:
+              only: main

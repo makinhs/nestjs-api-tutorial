@@ -2,9 +2,9 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_NAME: makinhs/nestjs-api
+      IMAGE_NAME: $DOCKER_IMAGE
     docker:
-      - image: makinhs/nestjs-api
+      - image: $DOCKER_IMAGE
 orbs:
   node: circleci/node@4.1
 
@@ -20,10 +20,10 @@ jobs:
       - run:
           name: docker_build
           command: |
-            time DOCKER_BUILDKIT=1 docker build -t makinhs/nestjs-api .
+            time DOCKER_BUILDKIT=1 docker build -t $DOCKER_IMAGE .
       - run:
           name: Archive Docker image
-          command: docker save -o image.tar makinhs/nestjs-api
+          command: docker save -o image.tar $DOCKER_IMAGE
       - persist_to_workspace:
           root: .
           paths:
@@ -47,14 +47,10 @@ jobs:
       - run:
           name: docker_push
           command: |
-            docker push makinhs/nestjs-api
+            docker push $DOCKER_IMAGE
 
 workflows:
   version: 2.1
-  # Below is the definition of your workflow.
-  # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-push job above.
-  # CircleCI will run this workflow on every commit.
-  # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   build_n_deploy:
     jobs:
       - build_image:

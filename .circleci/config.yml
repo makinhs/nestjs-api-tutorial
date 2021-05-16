@@ -33,7 +33,7 @@ jobs:
       - run:
           name: login_docker
           command: |
-            echo $DOCKER_PWD | docker login -u DOCKER_USER --password-stdin
+            echo $DOCKER_PWD | docker login -u $DOCKER_USER --password-stdin
       - run:
           name: docker_push
           command: |

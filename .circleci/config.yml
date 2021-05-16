@@ -31,6 +31,10 @@ jobs:
           command: |
             time DOCKER_BUILDKIT=1 docker build -t makinhs/nestjs-api .
       - run:
+          name: login_docker
+          command: |
+            echo $DOCKER_PWD | docker login -u DOCKER_USER --password-stdin
+      - run:
           name: docker_push
           command: |
             docker push makinhs/nestjs-api

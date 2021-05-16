@@ -33,7 +33,4 @@ workflows:
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   build_n_deploy:
     jobs:
-      - build_and_push:
-          filters:
-            branches:
-              only: main
+      - build_and_push
